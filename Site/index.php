@@ -1,4 +1,4 @@
-<?php  include_once("includes.php");?> 
+<?php  include_once("pags/includes.php");?> 
 <!doctype html>
 <html lang="pt-br">
   <head>
