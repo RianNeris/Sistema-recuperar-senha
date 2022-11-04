@@ -1,3 +1,3 @@
 <?php
-    define("sitedir", "http://localhost/site/", TRUE);
+    define("sitedir", "http://localhost/sistema-recuperar-senha/site/");
 ?>

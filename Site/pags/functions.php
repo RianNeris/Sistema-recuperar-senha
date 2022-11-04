@@ -11,7 +11,7 @@
         if ($total > 0){
             $dados = $get->fetch_assoc();
             add_dados_recover($con, $email);
-            enviar_email($con, $dados['email']);
+            
         }else {
 
             }
@@ -25,19 +25,20 @@
         $sql->execute();
 
         if($sql->affected_rows > 0 ){
-            enviar_email($con, $email);
+            enviar_email($con, $email,$rash);
         }
     }
 
-    function enviar_email($con, $email){
+    /*function enviar_email($con, $email){
         mail($email, "Sua nova senha", "Minha nova senha é essa...");
-    }
+    }*/
 
-    /*function enviar_email($con, $email, $rash){
+    function enviar_email($con, $email, $rash){
         $destinatario = $email;
 
         $subject = "RECUPERAR SENHA";
         $headers = "MIME-version: 1.0\r\n";
+        $headers .= 'From: Rian Neris <tcc.ds22@gmail.com>' . "\r\n";
         $headers .= "Content-type: text/html; charset=UTF-8\r\n";
         $message = "<html><head>";
         $message .= "
@@ -58,7 +59,7 @@
                 }else {
                     echo "<div class='alert alert-danger'>Erro ao enviar</div>";
             }
-*/
+
     function verifica_rash($con, $rash){
         $sql = $con->prepare("SELECT * FROM recover_solicitation WHERE rash = ? AND status = 0");
         $sql->bind_param("s", $_GET['rash']);
@@ -109,5 +110,5 @@
     function redireciona($dir){
         echo "<meta http-equiv='refresh' content='3; url={$dir}'>";
         }
-    
+    }
 ?>
