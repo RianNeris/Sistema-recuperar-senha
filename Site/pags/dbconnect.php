@@ -3,8 +3,9 @@
     $usuario = 'root';
     $senha = '';
     $banco = 'site';
+    
 
-    $con = new mysqli($host ,$usuario ,$senha ,$banco);
+    $con = new mysqli($host ,$usuario ,$senha,$banco);
 
 
     if(mysqli_connect_errno()){

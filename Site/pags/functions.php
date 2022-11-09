@@ -9,9 +9,8 @@
         $total = $get->num_rows;
 
         if ($total > 0){
-            $dados = $get->fetch_assoc();
+            $dados = $get->fetch_assoc();            
             add_dados_recover($con, $email);
-            
         }else {
 
             }
@@ -29,16 +28,12 @@
         }
     }
 
-    /*function enviar_email($con, $email){
-        mail($email, "Sua nova senha", "Minha nova senha é essa...");
-    }*/
-
     function enviar_email($con, $email, $rash){
         $destinatario = $email;
-
+       
         $subject = "RECUPERAR SENHA";
         $headers = "MIME-version: 1.0\r\n";
-        $headers .= 'From: Rian Neris <tcc.ds22@gmail.com>' . "\r\n";
+        $headers = "From: rian-neris@hotmail.com\r\n";
         $headers .= "Content-type: text/html; charset=UTF-8\r\n";
         $message = "<html><head>";
         $message .= "
@@ -53,11 +48,13 @@
             Atenciosamente, Webjobs.
             ";               
         $message .= "</html></head>";
+        ini_set('SMTP', "SMTP.office365.com");
+        ini_set('smtp_port', 587);
 
         if (mail($destinatario, $subject, $message, $headers)){
             echo "<div class='alert alert-success'>Os dados foram enviados para o seu email. Acesse para recuperar</div>";
                 }else {
-                    echo "<div class='alert alert-danger'>Erro ao enviar</div>";
+                    echo "<div class='alert alert-danger'>Erro ao enviar</div>".$con->error;
             }
 
     function verifica_rash($con, $rash){
